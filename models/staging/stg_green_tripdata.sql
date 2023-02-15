@@ -3,7 +3,9 @@
 with tripdata as 
 (
   select *,
-    row_number() over(partition by cast(vendorid as integer), lpep_pickup_datetime) as rn
+    row_number() over(partition by cast(vendorid as integer), lpep_pickup_datetime
+            order by cast(pulocationid as integer), cast(lpep_pickup_datetime as timestamp), cast(lpep_dropoff_datetime as timestamp)) 
+                as rn
   from {{ source('staging','green_tripdata') }}
   where vendorid is not null 
 )
