@@ -3,10 +3,13 @@
 with tripdata as 
 (
   select *,
-    row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
+    row_number() over(partition by cast(vendorid as integer), tpep_pickup_datetime
+            order by cast(pulocationid as integer), cast(tpep_pickup_datetime as timestamp), cast(tpep_dropoff_datetime as timestamp)) 
+                as rn
   from {{ source('staging','yellow_tripdata') }}
   where vendorid is not null 
 )
+
 select
    -- identifiers
     {{ dbt_utils.surrogate_key(['vendorid', 'tpep_pickup_datetime']) }} as tripid,
