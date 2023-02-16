@@ -25,5 +25,5 @@ models:
   
   - name: fact_fhv_trips
     description: >
-    For-Hire Vehicle (“FHV”) trip records include fields capturing the dispatching base license number and the pick-up date, 
-    time, and taxi zone location ID (shape file below). These records are generated from the FHV Trip Record submissions made by bases. 
+      For-Hire Vehicle trip records include fields capturing the dispatching base license number and the pick-up date, 
+      time, and taxi zone location ID (shape file below). These records are generated from the FHV Trip Record submissions made by bases. 
